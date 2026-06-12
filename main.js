@@ -166,7 +166,8 @@ const loadState = () => {
   if (savedSubs) {
     subscriptions = JSON.parse(savedSubs);
     // Auto-migration: Ensure Claude Pro is added if it's missing from saved subscriptions
-    if (!subscriptions.some(s => s.name === 'Claude Pro')) {
+    const migrated = localStorage.getItem('subscriptionBox_migrated_claude');
+    if (!migrated && !subscriptions.some(s => s.name === 'Claude Pro')) {
       const today = getTodayDate();
       subscriptions.push({
         id: 'sub-claude',
@@ -180,10 +181,14 @@ const loadState = () => {
         nextBillingDate: addDays(today, 14),
         isPinned: false
       });
+      localStorage.setItem('subscriptionBox_migrated_claude', 'true');
       saveState();
+    } else if (!migrated) {
+      localStorage.setItem('subscriptionBox_migrated_claude', 'true');
     }
   } else {
     initializeDefaultData();
+    localStorage.setItem('subscriptionBox_migrated_claude', 'true');
   }
 
   if (savedRate) {
