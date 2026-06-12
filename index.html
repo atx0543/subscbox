@@ -232,130 +232,130 @@
         </button>
       </nav>
 
-    </div>
-  </div>
-
-  <!-- ================= ADD / EDIT MODAL ================= -->
-  <div class="modal-overlay" id="subscription-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="modal-title">新規サブスク登録</h2>
-        <button class="close-btn" id="modal-close-btn">&times;</button>
-      </div>
-      <form id="subscription-form">
-        <input type="hidden" id="sub-id">
-        
-        <div class="form-group">
-          <label>主要なサブスクからクイック選択 (自動入力)</label>
-          <div class="quick-presets-grid" id="quick-presets-grid">
-            <!-- Dynamic presets from main.js will be injected here -->
+      <!-- ================= ADD / EDIT MODAL ================= -->
+      <div class="modal-overlay" id="subscription-modal">
+        <div class="modal-card">
+          <div class="modal-header">
+            <h2 id="modal-title">新規サブスク登録</h2>
+            <button class="close-btn" id="modal-close-btn">&times;</button>
           </div>
-        </div>
+          <form id="subscription-form">
+            <input type="hidden" id="sub-id">
+            
+            <div class="form-group">
+              <label>主要なサブスクからクイック選択 (自動入力)</label>
+              <div class="quick-presets-grid" id="quick-presets-grid">
+                <!-- Dynamic presets from main.js will be injected here -->
+              </div>
+            </div>
 
-        <div class="form-group">
-          <label for="sub-name">サービス名 *</label>
-          <input type="text" id="sub-name" required placeholder="例: Netflix">
-        </div>
+            <div class="form-group">
+              <label for="sub-name">サービス名 *</label>
+              <input type="text" id="sub-name" required placeholder="例: Netflix">
+            </div>
 
-        <div class="form-group">
-          <label for="sub-logo-url">カスタムロゴ画像URL (空欄でデフォルト)</label>
-          <input type="url" id="sub-logo-url" placeholder="https://example.com/logo.png (または空欄)">
-        </div>
+            <div class="form-group">
+              <label for="sub-logo-url">カスタムロゴ画像URL (空欄でデフォルト)</label>
+              <input type="url" id="sub-logo-url" placeholder="https://example.com/logo.png (または空欄)">
+            </div>
 
-        <div class="form-row">
-          <div class="form-group width-50">
-            <label for="sub-price">金額 *</label>
-            <input type="number" id="sub-price" required min="0" step="0.01" placeholder="20.00">
-          </div>
-          <div class="form-group width-50">
-            <label for="sub-currency">通貨 *</label>
-            <select id="sub-currency">
-              <option value="JPY">円 (¥)</option>
-              <option value="USD">ドル ($)</option>
-            </select>
-          </div>
-        </div>
+            <div class="form-row">
+              <div class="form-group width-50">
+                <label for="sub-price">金額 *</label>
+                <input type="number" id="sub-price" required min="0" step="0.01" placeholder="20.00">
+              </div>
+              <div class="form-group width-50">
+                <label for="sub-currency">通貨 *</label>
+                <select id="sub-currency">
+                  <option value="JPY">円 (¥)</option>
+                  <option value="USD">ドル ($)</option>
+                </select>
+              </div>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group width-50">
-            <label for="sub-cycle">周期 *</label>
-            <select id="sub-cycle">
-              <option value="monthly">月額</option>
-              <option value="annual">年額</option>
-            </select>
-          </div>
-          <div class="form-group width-50">
-            <label for="sub-category">カテゴリー</label>
-            <select id="sub-category">
-              <option value="ai">AI / 生産性</option>
-              <option value="design">デザイン / クリエイティブ</option>
-              <option value="entertainment">エンタメ / 動画配信</option>
-              <option value="utility">ユーティリティ / クラウド</option>
-              <option value="other">その他</option>
-            </select>
-          </div>
-        </div>
+            <div class="form-row">
+              <div class="form-group width-50">
+                <label for="sub-cycle">周期 *</label>
+                <select id="sub-cycle">
+                  <option value="monthly">月額</option>
+                  <option value="annual">年額</option>
+                </select>
+              </div>
+              <div class="form-group width-50">
+                <label for="sub-category">カテゴリー</label>
+                <select id="sub-category">
+                  <option value="ai">AI / 生産性</option>
+                  <option value="design">デザイン / クリエイティブ</option>
+                  <option value="entertainment">エンタメ / 動画配信</option>
+                  <option value="utility">ユーティリティ / クラウド</option>
+                  <option value="other">その他</option>
+                </select>
+              </div>
+            </div>
 
-        <div class="form-group">
-          <label for="sub-billing-date">次回請求日 *</label>
-          <input type="date" id="sub-billing-date" required>
-        </div>
+            <div class="form-group">
+              <label for="sub-billing-date">次回請求日 *</label>
+              <input type="date" id="sub-billing-date" required>
+            </div>
 
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary" id="modal-cancel-btn">キャンセル</button>
-          <button type="submit" class="btn btn-primary" id="modal-submit-btn">保存する</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- ================= DETAIL MODAL ================= -->
-  <div class="modal-overlay" id="detail-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="detail-title">サービス詳細</h2>
-        <button class="close-btn" id="detail-close-btn">&times;</button>
-      </div>
-      <div class="detail-body">
-        <div class="detail-hero">
-          <div class="detail-logo-wrapper">
-            <img src="" id="detail-logo" alt="Logo">
-          </div>
-          <h3 id="detail-name-large">ChatGPT Plus</h3>
-          <span class="detail-price-large" id="detail-price-large">$20.00 / 月</span>
-        </div>
-
-        <div class="detail-info-list">
-          <div class="detail-info-item">
-            <span class="info-label">次回請求日</span>
-            <span class="info-value" id="detail-billing-date">2026-06-26</span>
-          </div>
-          <div class="detail-info-item">
-            <span class="info-label">更新まであと</span>
-            <span class="info-value highlight" id="detail-remaining-days">あと 14 日</span>
-          </div>
-          <div class="detail-info-item">
-            <span class="info-label">日本円換算</span>
-            <span class="info-value" id="detail-converted-price">¥3,000 / 月 (レート 150円)</span>
-          </div>
-          <div class="detail-info-item">
-            <span class="info-label">カテゴリー</span>
-            <span class="info-value" id="detail-category">AI / 生産性</span>
-          </div>
-        </div>
-
-        <div class="detail-actions">
-          <button class="btn btn-secondary text-primary" id="detail-pin-btn">
-            <i data-lucide="pin"></i> ピン留めする
-          </button>
-          <button class="btn btn-secondary" id="detail-edit-btn">
-            <i data-lucide="edit-3"></i> 編集する
-          </button>
-          <button class="btn btn-danger" id="detail-delete-btn">
-            <i data-lucide="trash-2"></i> 削除する
-          </button>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="modal-cancel-btn">キャンセル</button>
+              <button type="submit" class="btn btn-primary" id="modal-submit-btn">保存する</button>
+            </div>
+          </form>
         </div>
       </div>
+
+      <!-- ================= DETAIL MODAL ================= -->
+      <div class="modal-overlay" id="detail-modal">
+        <div class="modal-card">
+          <div class="modal-header">
+            <h2 id="detail-title">サービス詳細</h2>
+            <button class="close-btn" id="detail-close-btn">&times;</button>
+          </div>
+          <div class="detail-body">
+            <div class="detail-hero">
+              <div class="detail-logo-wrapper">
+                <img src="" id="detail-logo" alt="Logo">
+              </div>
+              <h3 id="detail-name-large">ChatGPT Plus</h3>
+              <span class="detail-price-large" id="detail-price-large">$20.00 / 月</span>
+            </div>
+
+            <div class="detail-info-list">
+              <div class="detail-info-item">
+                <span class="info-label">次回請求日</span>
+                <span class="info-value" id="detail-billing-date">2026-06-26</span>
+              </div>
+              <div class="detail-info-item">
+                <span class="info-label">更新まであと</span>
+                <span class="info-value highlight" id="detail-remaining-days">あと 14 日</span>
+              </div>
+              <div class="detail-info-item">
+                <span class="info-label">日本円換算</span>
+                <span class="info-value" id="detail-converted-price">¥3,000 / 月 (レート 150円)</span>
+              </div>
+              <div class="detail-info-item">
+                <span class="info-label">カテゴリー</span>
+                <span class="info-value" id="detail-category">AI / 生産性</span>
+              </div>
+            </div>
+
+            <div class="detail-actions">
+              <button class="btn btn-secondary text-primary" id="detail-pin-btn">
+                <i data-lucide="pin"></i> ピン留めする
+              </button>
+              <button class="btn btn-secondary" id="detail-edit-btn">
+                <i data-lucide="edit-3"></i> 編集する
+              </button>
+              <button class="btn btn-danger" id="detail-delete-btn">
+                <i data-lucide="trash-2"></i> 削除する
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
