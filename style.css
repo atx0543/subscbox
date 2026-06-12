@@ -1322,3 +1322,54 @@ body {
     padding: 0;
   }
 }
+
+/* ================= MOBILE KEYBOARD & LOW HEIGHT OPTIMIZATIONS ================= */
+/* 1. Hide quick presets when any input field is focused to save massive vertical space */
+#subscription-form:focus-within .form-group:first-of-type {
+  display: none;
+}
+
+/* 2. Optimize modal layout dynamically when viewport height is small (e.g. mobile keyboard visible) */
+@media (max-height: 600px) {
+  /* Force hide presets grid to ensure fields fit on small screen height */
+  #subscription-modal .form-group:first-of-type {
+    display: none;
+  }
+  
+  .modal-card {
+    padding: 16px 16px 28px 16px;
+    max-height: 95%; /* Give a bit more space when viewport is squished */
+  }
+  
+  .modal-header {
+    margin-bottom: 12px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+    gap: 4px;
+  }
+  
+  .form-group label {
+    font-size: 10px;
+  }
+  
+  .form-group input, 
+  .form-group select {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  
+  .form-row {
+    gap: 8px;
+  }
+  
+  .form-actions {
+    margin-top: 16px;
+  }
+  
+  .btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

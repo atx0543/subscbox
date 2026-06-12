@@ -169,12 +169,18 @@
 
           <div class="settings-group">
             <div class="settings-group-title">為替レート設定</div>
-            <div class="settings-item">
-              <span class="settings-label">1 USD (米ドル) の円換算レート</span>
-              <div class="settings-input-wrapper">
-                <input type="number" id="usd-rate-input" class="settings-input" value="150" min="1" max="500">
-                <span class="currency-unit">円</span>
+            <div class="settings-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <span class="settings-label">1 USD (米ドル) の円換算レート</span>
+                <div class="settings-input-wrapper">
+                  <input type="number" id="usd-rate-input" class="settings-input" value="150" min="1" max="500">
+                  <span class="currency-unit">円</span>
+                </div>
               </div>
+              <span id="usd-rate-status" style="font-size: 10px; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 4px;">
+                <i data-lucide="refresh-cw" class="spin-icon" style="width: 10px; height: 10px;"></i>
+                最新レートを自動取得中...
+              </span>
             </div>
           </div>
 

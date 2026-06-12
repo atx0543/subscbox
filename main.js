@@ -1103,11 +1103,44 @@ const setupDragScroll = () => {
 };
 
 // ================= APP INITIALIZATION ================= //
+const fetchExchangeRate = async () => {
+  const statusEl = document.getElementById('usd-rate-status');
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/USD');
+    const data = await res.json();
+    if (data && data.rates && data.rates.JPY) {
+      usdToJpyRate = Math.round(data.rates.JPY * 100) / 100;
+      saveState();
+      
+      const rateInput = document.getElementById('usd-rate-input');
+      if (rateInput) rateInput.value = usdToJpyRate;
+      
+      if (statusEl) {
+        statusEl.innerHTML = `<i data-lucide="check" style="width: 10px; height: 10px; color: var(--accent);"></i> リアルタイム為替レートを自動取得しました (${new Date().toLocaleTimeString('ja-JP', {hour: '2-digit', minute:'2-digit'})})`;
+        statusEl.style.color = 'var(--accent)';
+      }
+      
+      renderDashboard();
+      if (activeView === 'home') renderSubscriptionList();
+      if (activeView === 'analysis') renderAnalysis();
+      lucide.createIcons();
+    }
+  } catch (err) {
+    console.warn('リアルタイム為替レートの取得に失敗しました。ローカル保存のレートを使用します。', err);
+    if (statusEl) {
+      statusEl.innerHTML = `<i data-lucide="alert-circle" style="width: 10px; height: 10px; color: var(--warning);"></i> レート取得に失敗しました。ローカル保存のレートを使用しています。`;
+      statusEl.style.color = 'var(--warning)';
+    }
+    lucide.createIcons();
+  }
+};
+
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
   setupNavigation();
   renderDashboard();
   renderSubscriptionList();
   setupDragScroll();
+  fetchExchangeRate();
   lucide.createIcons();
 });
