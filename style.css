@@ -1326,8 +1326,7 @@ body {
 /* ================= MOBILE KEYBOARD & LOW HEIGHT OPTIMIZATIONS ================= */
 /* 2. Optimize modal layout dynamically when viewport height is small (e.g. mobile keyboard visible) */
 @media (max-height: 600px) {
-  /* Force hide presets grid to ensure fields fit on small screen height */
-  #subscription-modal .form-group:first-of-type {
+  #presets-form-group {
     display: none;
   }
   
