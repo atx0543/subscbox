@@ -13,13 +13,14 @@ const PRESET_SERVICES = [
   { name: 'Amazon Prime', logoUrl: './assets/amazon_prime_icon.png', price: 600, currency: 'JPY', category: 'utility', cycle: 'monthly' },
   { name: 'Spotify', logoUrl: 'https://api.iconify.design/logos:spotify-icon.svg', price: 980, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
   { name: 'Apple Music', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 1080, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Disney+', logoUrl: 'https://api.iconify.design/logos:disneyplus.svg', price: 990, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
+  { name: 'Disney+', logoUrl: './assets/disneyplus_icon.png', price: 990, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
   { name: 'U-NEXT', logoUrl: './assets/unext_icon.png', price: 2189, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Hulu', logoUrl: 'https://api.iconify.design/logos:hulu.svg', price: 1026, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
+  { name: 'Hulu', logoUrl: './assets/hulu_icon.png', price: 1026, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
   { name: 'Apple TV+', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 900, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
   { name: 'ChatGPT Plus', logoUrl: 'https://api.iconify.design/logos:openai-icon.svg', price: 20.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
   { name: 'Google Gemini', logoUrl: './assets/gemini_icon.png', price: 2900, currency: 'JPY', category: 'ai', cycle: 'monthly' },
   { name: 'Claude Pro', logoUrl: './assets/claude_icon.png', price: 20.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
+  { name: 'NotebookLM', logoUrl: './assets/notebooklm_yellow_icon.png', price: 0, currency: 'JPY', category: 'ai', cycle: 'monthly' },
   { name: 'Notion Plus', logoUrl: 'https://api.iconify.design/logos:notion-icon.svg', price: 10.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
   { name: 'Microsoft 365', logoUrl: 'https://api.iconify.design/logos:microsoft-icon.svg', price: 1410, currency: 'JPY', category: 'utility', cycle: 'monthly' },
   { name: 'Adobe CC', logoUrl: 'https://api.iconify.design/logos:adobe.svg', price: 7780, currency: 'JPY', category: 'design', cycle: 'monthly' },
@@ -28,13 +29,13 @@ const PRESET_SERVICES = [
   { name: 'GitHub Copilot', logoUrl: 'https://api.iconify.design/logos:github-icon.svg', price: 10.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
   { name: 'Kindle Unlimited', logoUrl: './assets/kindle_icon.png', price: 980, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
   { name: 'Audible', logoUrl: './assets/audible_icon.png', price: 1500, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Nintendo Switch', logoUrl: 'https://api.iconify.design/logos:nintendo-switch.svg', price: 306, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'PlayStation Plus', logoUrl: 'https://api.iconify.design/logos:playstation.svg', price: 850, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Xbox Game Pass', logoUrl: 'https://api.iconify.design/logos:xbox.svg', price: 1210, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
+  { name: 'Nintendo Switch', logoUrl: './assets/nintendo_switch_icon.png', price: 306, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
+  { name: 'PlayStation Plus', logoUrl: './assets/playstation_icon.png', price: 850, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
+  { name: 'Xbox Game Pass', logoUrl: './assets/xbox_icon.png', price: 1210, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
   { name: 'Google One', logoUrl: 'https://api.iconify.design/logos:google-icon.svg', price: 250, currency: 'JPY', category: 'utility', cycle: 'monthly' },
   { name: 'iCloud+', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 130, currency: 'JPY', category: 'utility', cycle: 'monthly' },
   { name: 'Dropbox Plus', logoUrl: 'https://api.iconify.design/logos:dropbox.svg', price: 1500, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'Evernote', logoUrl: 'https://api.iconify.design/logos:evernote-icon.svg', price: 1100, currency: 'JPY', category: 'utility', cycle: 'monthly' },
+  { name: 'Evernote', logoUrl: './assets/evernote_icon.png', price: 1100, currency: 'JPY', category: 'utility', cycle: 'monthly' },
   { name: 'Slack Pro', logoUrl: 'https://api.iconify.design/logos:slack-icon.svg', price: 1050, currency: 'JPY', category: 'utility', cycle: 'monthly' },
   { name: 'Zoom Pro', logoUrl: 'https://api.iconify.design/logos:zoom-icon.svg', price: 2120, currency: 'JPY', category: 'utility', cycle: 'monthly' },
   { name: 'SunoAI', logoUrl: './assets/suno_ai_icon.png', price: 10.00, currency: 'USD', category: 'entertainment', cycle: 'monthly' },
@@ -165,6 +166,28 @@ const loadState = () => {
   
   if (savedSubs) {
     subscriptions = JSON.parse(savedSubs);
+    
+    // Auto-migration: Update old logo URLs to local assets
+    let stateChanged = false;
+    subscriptions = subscriptions.map(sub => {
+      const migrationMap = {
+        'https://api.iconify.design/logos:disneyplus.svg': './assets/disneyplus_icon.png',
+        'https://api.iconify.design/logos:hulu.svg': './assets/hulu_icon.png',
+        'https://api.iconify.design/logos:nintendo-switch.svg': './assets/nintendo_switch_icon.png',
+        'https://api.iconify.design/logos:playstation.svg': './assets/playstation_icon.png',
+        'https://api.iconify.design/logos:xbox.svg': './assets/xbox_icon.png',
+        'https://api.iconify.design/logos:evernote-icon.svg': './assets/evernote_icon.png',
+        './assets/notebooklm_icon.png': './assets/notebooklm_yellow_icon.png'
+      };
+      
+      if (migrationMap[sub.logoUrl]) {
+        sub.logoUrl = migrationMap[sub.logoUrl];
+        stateChanged = true;
+      }
+      return sub;
+    });
+    if (stateChanged) saveState();
+
     // Auto-migration: Ensure Claude Pro is added if it's missing from saved subscriptions
     const migrated = localStorage.getItem('subscriptionBox_migrated_claude');
     if (!migrated && !subscriptions.some(s => s.name === 'Claude Pro')) {
