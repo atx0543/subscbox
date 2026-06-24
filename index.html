@@ -304,6 +304,16 @@
               <input type="date" id="sub-billing-date" required>
             </div>
 
+            <div class="form-group">
+              <label for="sub-cancel-url">解約手続きURL (オプション)</label>
+              <input type="url" id="sub-cancel-url" placeholder="https://example.com/cancel (空欄で自動入力)">
+            </div>
+
+            <div class="form-group">
+              <label for="sub-cancel-memo">解約メモ・手順 (オプション)</label>
+              <textarea id="sub-cancel-memo" placeholder="例: 設定 > サブスクリプション管理 から解約" rows="2" style="font-family: inherit; font-size: 14px; padding: 10px 12px; background-color: var(--bg-input); border: 1px solid transparent; border-radius: var(--radius-sm); color: var(--text-main); outline: none; resize: none;"></textarea>
+            </div>
+
             <div class="form-actions">
               <button type="button" class="btn btn-secondary" id="modal-cancel-btn">キャンセル</button>
               <button type="submit" class="btn btn-primary" id="modal-submit-btn">保存する</button>
@@ -351,12 +361,31 @@
               <button class="btn btn-secondary text-primary" id="detail-pin-btn">
                 <i data-lucide="pin"></i> ピン留めする
               </button>
+              <button class="btn btn-secondary" id="detail-cancel-status-btn">
+                <i data-lucide="alert-triangle"></i> 解約予定に設定する
+              </button>
               <button class="btn btn-secondary" id="detail-edit-btn">
                 <i data-lucide="edit-3"></i> 編集する
               </button>
               <button class="btn btn-danger" id="detail-delete-btn">
                 <i data-lucide="trash-2"></i> 削除する
               </button>
+            </div>
+
+            <!-- 解約サポートセクション -->
+            <div class="detail-cancel-support" id="detail-cancel-support-box">
+              <div class="support-header">
+                <i data-lucide="help-circle" class="support-icon"></i>
+                <span class="support-title">解約サポート</span>
+              </div>
+              <div class="support-body">
+                <div class="cancel-steps-list" id="detail-cancel-steps">
+                  <!-- JSで動的に追加される手順 -->
+                </div>
+                <a href="#" target="_blank" class="btn-cancel-link" id="detail-cancel-link-btn">
+                  <i data-lucide="external-link"></i> 公式解約ページを開く
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -8,38 +8,38 @@ let chartInstance = null;
 
 // Preset major 30 services data (updated with local assets for Suno, Udio, Amazon Prime, U-NEXT, Kindle, Audible, Gemini, Canva)
 const PRESET_SERVICES = [
-  { name: 'Netflix', logoUrl: 'https://api.iconify.design/logos:netflix-icon.svg', price: 790, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'YouTube Premium', logoUrl: 'https://api.iconify.design/logos:youtube-icon.svg', price: 1280, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Amazon Prime', logoUrl: './assets/amazon_prime_icon.png', price: 600, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'Spotify', logoUrl: 'https://api.iconify.design/logos:spotify-icon.svg', price: 980, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Apple Music', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 1080, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Disney+', logoUrl: './assets/disneyplus_icon.png', price: 990, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'U-NEXT', logoUrl: './assets/unext_icon.png', price: 2189, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Hulu', logoUrl: './assets/hulu_icon.png', price: 1026, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Apple TV+', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 900, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'ChatGPT Plus', logoUrl: 'https://api.iconify.design/logos:openai-icon.svg', price: 20.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
-  { name: 'Google Gemini', logoUrl: './assets/gemini_icon.png', price: 2900, currency: 'JPY', category: 'ai', cycle: 'monthly' },
-  { name: 'Claude Pro', logoUrl: './assets/claude_icon.png', price: 20.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
-  { name: 'NotebookLM', logoUrl: './assets/notebooklm_yellow_icon.png', price: 0, currency: 'JPY', category: 'ai', cycle: 'monthly' },
-  { name: 'Notion Plus', logoUrl: 'https://api.iconify.design/logos:notion-icon.svg', price: 10.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
-  { name: 'Microsoft 365', logoUrl: 'https://api.iconify.design/logos:microsoft-icon.svg', price: 1410, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'Adobe CC', logoUrl: 'https://api.iconify.design/logos:adobe.svg', price: 7780, currency: 'JPY', category: 'design', cycle: 'monthly' },
-  { name: 'Canva Pro', logoUrl: './assets/canva_icon.png', price: 1180, currency: 'JPY', category: 'design', cycle: 'monthly' },
-  { name: 'Midjourney', logoUrl: 'https://api.iconify.design/openmoji:sailboat.svg', price: 10.00, currency: 'USD', category: 'design', cycle: 'monthly' },
-  { name: 'GitHub Copilot', logoUrl: 'https://api.iconify.design/logos:github-icon.svg', price: 10.00, currency: 'USD', category: 'ai', cycle: 'monthly' },
-  { name: 'Kindle Unlimited', logoUrl: './assets/kindle_icon.png', price: 980, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Audible', logoUrl: './assets/audible_icon.png', price: 1500, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Nintendo Switch', logoUrl: './assets/nintendo_switch_icon.png', price: 306, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'PlayStation Plus', logoUrl: './assets/playstation_icon.png', price: 850, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Xbox Game Pass', logoUrl: './assets/xbox_icon.png', price: 1210, currency: 'JPY', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Google One', logoUrl: 'https://api.iconify.design/logos:google-icon.svg', price: 250, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'iCloud+', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 130, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'Dropbox Plus', logoUrl: 'https://api.iconify.design/logos:dropbox.svg', price: 1500, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'Evernote', logoUrl: './assets/evernote_icon.png', price: 1100, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'Slack Pro', logoUrl: 'https://api.iconify.design/logos:slack-icon.svg', price: 1050, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'Zoom Pro', logoUrl: 'https://api.iconify.design/logos:zoom-icon.svg', price: 2120, currency: 'JPY', category: 'utility', cycle: 'monthly' },
-  { name: 'SunoAI', logoUrl: './assets/suno_ai_icon.png', price: 10.00, currency: 'USD', category: 'entertainment', cycle: 'monthly' },
-  { name: 'Udio', logoUrl: './assets/udio_icon.png', price: 10.00, currency: 'USD', category: 'entertainment', cycle: 'monthly' }
+  { name: 'Netflix', logoUrl: 'https://api.iconify.design/logos:netflix-icon.svg', price: 790, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.netflix.com/CancelPlan', cancelSteps: ['上記のボタンから「プランのキャンセル」画面を開きます。', '「キャンセル手続きの完了」をクリックして確定します。'] },
+  { name: 'YouTube Premium', logoUrl: 'https://api.iconify.design/logos:youtube-icon.svg', price: 1280, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.youtube.com/paid_memberships', cancelSteps: ['「購入とメンバーシップ」画面を開きます。', 'メンバーシップの「管理」をクリックし、「無効化」を選択します。', '「解約する」を選択し、画面に従って進めます。'] },
+  { name: 'Amazon Prime', logoUrl: './assets/amazon_prime_icon.png', price: 600, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://www.amazon.co.jp/mc/pip', cancelSteps: ['プライム会員情報画面を開きます。', '「プライム会員情報」をクリックし、「会員資格を終了する」を選択します。', '画面の指示に従って解約手続きを完了させます。'] },
+  { name: 'Spotify', logoUrl: 'https://api.iconify.design/logos:spotify-icon.svg', price: 980, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.spotify.com/account/overview/', cancelSteps: ['「アカウント概要」画面を開きます。', '「プランを変更」または「プレミアムをキャンセル」を選択します。', '画面に沿って解約手続きを進めます。'] },
+  { name: 'Apple Music', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 1080, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://apps.apple.com/account/subscriptions', cancelSteps: ['Appleのサブスクリプション管理画面を開きます。', '「Apple Music」を選択します。', '「サブスクリプションをキャンセルする」をタップします。'] },
+  { name: 'Disney+', logoUrl: './assets/disneyplus_icon.png', price: 990, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.disneyplus.com/account', cancelSteps: ['アカウント情報画面を開きます。', 'サブスクリプション欄の「Disney+」を選択します。', '「サブスクリプションをキャンセルする」をクリックします。'] },
+  { name: 'U-NEXT', logoUrl: './assets/unext_icon.png', price: 2189, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://account.unext.jp/', cancelSteps: ['U-NEXT設定・サポート画面を開きます。', '「契約内容の確認・変更」を選択します。', 'ご利用中のサービス一覧から「解約手続きはこちら」を選んで進めます。'] },
+  { name: 'Hulu', logoUrl: './assets/hulu_icon.png', price: 1026, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.hulu.jp/account', cancelSteps: ['Huluアカウントページを開きます。', 'お支払い情報の右側にある「解約する」をクリックします。', '画面の指示に従って進め、「解約する」をタップします。'] },
+  { name: 'Apple TV+', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 900, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://apps.apple.com/account/subscriptions', cancelSteps: ['Appleのサブスクリプション管理画面を開きます。', '「Apple TV+」を選択します。', '「サブスクリプションをキャンセルする」をタップします。'] },
+  { name: 'ChatGPT Plus', logoUrl: 'https://api.iconify.design/logos:openai-icon.svg', price: 20.00, currency: 'USD', category: 'ai', cycle: 'monthly', cancelUrl: 'https://chatgpt.com/', cancelSteps: ['左下のプロフィール名をクリックし、「Settings (設定)」を開きます。', '「Billing (支払い)」タブを選択し、「Manage My Subscription (サブスク管理)」をクリックします。', '英語のStripe決済画面に切り替わるので、「Cancel plan (プランをキャンセル)」をクリックします。'] },
+  { name: 'Google Gemini', logoUrl: './assets/gemini_icon.png', price: 2900, currency: 'JPY', category: 'ai', cycle: 'monthly', cancelUrl: 'https://one.google.com/settings', cancelSteps: ['Google Oneの設定画面を開きます。', '「定期購入の解約」を選択します。', '「メンバーシップを解約」をクリックして確定します。'] },
+  { name: 'Claude Pro', logoUrl: './assets/claude_icon.png', price: 20.00, currency: 'USD', category: 'ai', cycle: 'monthly', cancelUrl: 'https://claude.ai/', cancelSteps: ['左下のユーザー名をクリックし、「Billing (支払い)」を選択します。', '「Cancel Subscription (サブスクリプションをキャンセル)」または「Manage Subscription」をクリックします。', '確認画面で解約を確定します。'] },
+  { name: 'NotebookLM', logoUrl: './assets/notebooklm_yellow_icon.png', price: 0, currency: 'JPY', category: 'ai', cycle: 'monthly', cancelUrl: '', cancelSteps: [] },
+  { name: 'Notion Plus', logoUrl: 'https://api.iconify.design/logos:notion-icon.svg', price: 10.00, currency: 'USD', category: 'ai', cycle: 'monthly', cancelUrl: 'https://www.notion.so/', cancelSteps: ['「Settings & members (設定とメンバー)」を開きます。', '「Plans (プラン)」を選択し、プラン詳細から「Downgrade (ダウングレード)」またはキャンセルを選びます。'] },
+  { name: 'Microsoft 365', logoUrl: 'https://api.iconify.design/logos:microsoft-icon.svg', price: 1410, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://account.microsoft.com/services', cancelSteps: ['Microsoftサービスとサブスクリプション画面を開きます。', 'Microsoft 365 of 「管理」をクリックします。', '「サブスクリプションのキャンセル」をクリックします。'] },
+  { name: 'Adobe CC', logoUrl: 'https://api.iconify.design/logos:adobe.svg', price: 7780, currency: 'JPY', category: 'design', cycle: 'monthly', cancelUrl: 'https://account.adobe.com/plans', cancelSteps: ['Adobeアカウントページを開きます。', 'プラン詳細内の「プランを管理」をクリックします。', '「プランを解約」を選択し、指示に従って進めます。'] },
+  { name: 'Canva Pro', logoUrl: './assets/canva_icon.png', price: 1180, currency: 'JPY', category: 'design', cycle: 'monthly', cancelUrl: 'https://www.canva.com/settings/billing-and-plans', cancelSteps: ['Canvaの「支払いとプラン」設定画面を開きます。', 'ご利用中のプランの右側にある「...」アイコンをクリックします。', '「プランを変更/キャンセル」を選択します。'] },
+  { name: 'Midjourney', logoUrl: 'https://api.iconify.design/openmoji:sailboat.svg', price: 10.00, currency: 'USD', category: 'design', cycle: 'monthly', cancelUrl: 'https://www.midjourney.com/account/', cancelSteps: ['Midjourneyのアカウント管理画面を開きます。', '「Cancel Subscription (定期購読をキャンセル)」をクリックします。', '「Confirm Cancellation (キャンセルを確定)」をクリックします。'] },
+  { name: 'GitHub Copilot', logoUrl: 'https://api.iconify.design/logos:github-icon.svg', price: 10.00, currency: 'USD', category: 'ai', cycle: 'monthly', cancelUrl: 'https://github.com/settings/copilot', cancelSteps: ['GitHubのCopilot設定画面を開きます。', '「Cancel subscription (サブスクリプション解約)」を選択します。'] },
+  { name: 'Kindle Unlimited', logoUrl: './assets/kindle_icon.png', price: 980, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.amazon.co.jp/kindle-dbs/hz/bookshelf', cancelSteps: ['Amazonの「Kindle Unlimited 会員登録を管理」画面を開きます。', '左側の「Kindle Unlimited 会員登録をキャンセル」を選択します。', '「メンバーシップを終了する」をクリックします。'] },
+  { name: 'Audible', logoUrl: './assets/audible_icon.png', price: 1500, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.audible.co.jp/account/overview', cancelSteps: ['Audibleアカウントサービス画面を開きます。', '「退会手続きへ」をクリックします。', 'アンケートに答え、「退会手続きを完了する」をクリックします。'] },
+  { name: 'Nintendo Switch', logoUrl: './assets/nintendo_switch_icon.png', price: 306, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://ec.nintendo.com/JP/ja/membership', cancelSteps: ['任天堂のマイニンテンドーストア（またはSwitch本体のショップ）の情報を開きます。', '「ご利用状況」から「自動継続購入の更新停止」を選択します。'] },
+  { name: 'PlayStation Plus', logoUrl: './assets/playstation_icon.png', price: 850, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://web.playstation.com/', cancelSteps: ['PlayStationのアカウント設定画面を開きます。', '「定額制サービスの管理」を選択します。', 'PlayStation Plusの「自動更新を無効にする」を選択します。'] },
+  { name: 'Xbox Game Pass', logoUrl: './assets/xbox_icon.png', price: 1210, currency: 'JPY', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://account.microsoft.com/services', cancelSteps: ['Microsoftサービスとサブスクリプション画面を開きます。', 'Xbox Game Passの「管理」をクリックします。', '「自動更新を無効にする」または「キャンセル」を選択します。'] },
+  { name: 'Google One', logoUrl: 'https://api.iconify.design/logos:google-icon.svg', price: 250, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://one.google.com/settings', cancelSteps: ['Google Oneの設定画面を開きます。', '「定期購入の解約」を選択し、手順に沿って完了させます。'] },
+  { name: 'iCloud+', logoUrl: 'https://api.iconify.design/logos:apple.svg', price: 130, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://apps.apple.com/account/subscriptions', cancelSteps: ['Appleのサブスクリプション管理画面を開くか、iOSデバイスの設定からApple Accountに入ります。', '「サブスクリプション」→「iCloud+」を選択し、プランをダウングレード（50GBから無料の5GBへ変更）します。'] },
+  { name: 'Dropbox Plus', logoUrl: 'https://api.iconify.design/logos:dropbox.svg', price: 1500, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://www.dropbox.com/account/plan', cancelSteps: ['Dropboxの「プラン」管理画面を開きます。', '下部にある「プランをキャンセル」を選択します。', '指示に従って進め、無料プランへのダウングレードを確定します。'] },
+  { name: 'Evernote', logoUrl: './assets/evernote_icon.png', price: 1100, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://www.evernote.com/BillingProfile.action', cancelSteps: ['Evernoteの「アカウント概要」または「請求書情報」画面を開きます。', '「登録解除」または「プランのキャンセル」をクリックします。', '指示に従いダウングレードを完了させます。'] },
+  { name: 'Slack Pro', logoUrl: 'https://api.iconify.design/logos:slack-icon.svg', price: 1050, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://slack.com/services/manage', cancelSteps: ['Slack管理画面を開くか、ワークスペース管理者設定に入ります。', '「お支払い」→「プラン変更」または「サブスクリプションをキャンセル」をクリックします。'] },
+  { name: 'Zoom Pro', logoUrl: 'https://api.iconify.design/logos:zoom-icon.svg', price: 2120, currency: 'JPY', category: 'utility', cycle: 'monthly', cancelUrl: 'https://zoom.us/billing', cancelSteps: ['Zoomの「請求情報」管理画面を開きます。', '「プランのキャンセル」をクリックします。', '確認画面で「登録解除」を選択します。'] },
+  { name: 'SunoAI', logoUrl: './assets/suno_ai_icon.png', price: 10.00, currency: 'USD', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://suno.com/account', cancelSteps: ['Sunoのアカウント設定ページを開きます。', '「Manage Subscription (サブスクリプション管理)」をクリックします。', 'Stripeの画面が開くので、「Cancel plan (キャンセル)」をクリックします。'] },
+  { name: 'Udio', logoUrl: './assets/udio_icon.png', price: 10.00, currency: 'USD', category: 'entertainment', cycle: 'monthly', cancelUrl: 'https://www.udio.com/settings', cancelSteps: ['Udioの設定画面を開きます。', '「Manage Subscription (サブスクリプション管理)」を選択します。', 'Stripeの画面で「Cancel plan (プランをキャンセル)」をクリックします。'] }
 ];
 
 // Category mapping for readable text
@@ -204,11 +204,33 @@ const loadState = () => {
         nextBillingDate: addDays(today, 14),
         isPinned: false
       });
-      localStorage.setItem('subscriptionBox_migrated_claude', 'true');
-      saveState();
     } else if (!migrated) {
       localStorage.setItem('subscriptionBox_migrated_claude', 'true');
     }
+
+    // Auto-rollover: if nextBillingDate has passed, roll it over to the next billing period
+    const todayForRollover = getTodayDate();
+    let rolloverChanged = false;
+    subscriptions = subscriptions.map(sub => {
+      if (sub.nextBillingDate) {
+        let billingDate = new Date(sub.nextBillingDate);
+        billingDate.setHours(0, 0, 0, 0);
+        
+        while (billingDate < todayForRollover) {
+          if (sub.cycle === 'monthly') {
+            billingDate.setMonth(billingDate.getMonth() + 1);
+          } else if (sub.cycle === 'annual') {
+            billingDate.setFullYear(billingDate.getFullYear() + 1);
+          } else {
+            billingDate.setDate(billingDate.getDate() + 30);
+          }
+          sub.nextBillingDate = formatDateString(billingDate);
+          rolloverChanged = true;
+        }
+      }
+      return sub;
+    });
+    if (rolloverChanged) saveState();
   } else {
     initializeDefaultData();
     localStorage.setItem('subscriptionBox_migrated_claude', 'true');
@@ -344,11 +366,12 @@ const renderSubscriptionList = () => {
     const progressPercent = Math.max(0, Math.min(100, (remainingDays / cycleMaxDays) * 100));
 
     const card = document.createElement('div');
-    card.className = `sub-card ${sub.isPinned ? 'sub-card-pinned' : ''}`;
+    card.className = `sub-card ${sub.isPinned ? 'sub-card-pinned' : ''} ${sub.isCancelling ? 'sub-card-cancelling' : ''}`;
     card.dataset.id = sub.id;
 
     card.innerHTML = `
       ${sub.isPinned ? '<div class="pin-indicator"><i data-lucide="pin"></i></div>' : ''}
+      ${sub.isCancelling ? '<div class="cancelling-badge">解約予定</div>' : ''}
       <div class="sub-card-row">
         <div class="sub-card-left">
           <div class="sub-logo">
@@ -740,6 +763,8 @@ const renderQuickPresets = () => {
       document.getElementById('sub-cycle').value = preset.cycle;
       document.getElementById('sub-category').value = preset.category;
       document.getElementById('sub-logo-url').value = preset.logoUrl;
+      document.getElementById('sub-cancel-url').value = preset.cancelUrl || '';
+      document.getElementById('sub-cancel-memo').value = preset.cancelSteps ? preset.cancelSteps.join('\n') : '';
     });
 
     container.appendChild(item);
@@ -768,6 +793,8 @@ const openSubModal = (subId = null) => {
     document.getElementById('sub-category').value = sub.category;
     document.getElementById('sub-billing-date').value = sub.nextBillingDate;
     document.getElementById('sub-logo-url').value = sub.logoUrl;
+    document.getElementById('sub-cancel-url').value = sub.cancelUrl || '';
+    document.getElementById('sub-cancel-memo').value = sub.cancelMemo || '';
 
     const presetItems = document.querySelectorAll('.preset-item');
     presetItems.forEach(item => {
@@ -780,6 +807,8 @@ const openSubModal = (subId = null) => {
     document.getElementById('modal-title').innerText = '新規サブスク登録';
     document.getElementById('sub-id').value = '';
     document.getElementById('sub-billing-date').value = addDays(getTodayDate(), 1);
+    document.getElementById('sub-cancel-url').value = '';
+    document.getElementById('sub-cancel-memo').value = '';
   }
 
   subModal.classList.add('active');
@@ -818,6 +847,9 @@ subForm.addEventListener('submit', (e) => {
     logoType = matchedPreset ? matchedPreset.name.toLowerCase() : 'custom';
   }
 
+  const cancelUrl = document.getElementById('sub-cancel-url').value.trim();
+  const cancelMemo = document.getElementById('sub-cancel-memo').value.trim();
+
   if (subId) {
     const idx = subscriptions.findIndex(s => s.id === subId);
     if (idx !== -1) {
@@ -825,7 +857,8 @@ subForm.addEventListener('submit', (e) => {
         ...subscriptions[idx],
         name, price, currency, cycle, category,
         nextBillingDate: billingDate,
-        logoType, logoUrl
+        logoType, logoUrl,
+        cancelUrl, cancelMemo
       };
     }
   } else {
@@ -834,7 +867,9 @@ subForm.addEventListener('submit', (e) => {
       name, price, currency, cycle, category,
       nextBillingDate: billingDate,
       logoType, logoUrl,
-      isPinned: false
+      isPinned: false,
+      isCancelling: false,
+      cancelUrl, cancelMemo
     };
     subscriptions.push(newSub);
   }
@@ -878,6 +913,52 @@ const showDetailModal = (subId) => {
   }
 
   document.getElementById('detail-category').innerText = CATEGORY_NAMES[sub.category] || 'その他';
+
+  // --- Cancellation Support Box rendering ---
+  const cancelBox = document.getElementById('detail-cancel-support-box');
+  const cancelSteps = document.getElementById('detail-cancel-steps');
+  const cancelLinkBtn = document.getElementById('detail-cancel-link-btn');
+
+  const preset = PRESET_SERVICES.find(p => p.name.toLowerCase() === sub.name.toLowerCase());
+  const effectiveCancelUrl = sub.cancelUrl ? sub.cancelUrl : (preset ? preset.cancelUrl : '');
+  const effectiveCancelMemo = sub.cancelMemo ? sub.cancelMemo : (preset && preset.cancelSteps ? preset.cancelSteps.join('\n') : '');
+
+  if (effectiveCancelUrl || effectiveCancelMemo) {
+    cancelBox.style.display = 'block';
+    cancelSteps.innerHTML = '';
+    
+    if (effectiveCancelMemo) {
+      const steps = effectiveCancelMemo.split('\n').filter(s => s.trim() !== '');
+      steps.forEach((step, idx) => {
+        const stepItem = document.createElement('div');
+        stepItem.className = 'cancel-step-item';
+        stepItem.innerHTML = `
+          <span class="cancel-step-num">${idx + 1}.</span>
+          <span class="cancel-step-text">${step}</span>
+        `;
+        cancelSteps.appendChild(stepItem);
+      });
+    }
+
+    if (effectiveCancelUrl) {
+      cancelLinkBtn.style.display = 'inline-flex';
+      cancelLinkBtn.href = effectiveCancelUrl;
+    } else {
+      cancelLinkBtn.style.display = 'none';
+    }
+  } else {
+    cancelBox.style.display = 'none';
+  }
+
+  // Hook up cancel status toggle button state
+  const cancelStatusBtn = document.getElementById('detail-cancel-status-btn');
+  if (sub.isCancelling) {
+    cancelStatusBtn.classList.add('active');
+    cancelStatusBtn.innerHTML = '<i data-lucide="check-circle"></i> 解約予定を解除する';
+  } else {
+    cancelStatusBtn.classList.remove('active');
+    cancelStatusBtn.innerHTML = '<i data-lucide="alert-triangle"></i> 解約予定に設定する';
+  }
 
   const pinBtn = document.getElementById('detail-pin-btn');
   if (sub.isPinned) {
@@ -929,10 +1010,15 @@ document.getElementById('sub-name').addEventListener('input', (e) => {
         document.getElementById('sub-cycle').value = matchedPreset.cycle;
         document.getElementById('sub-category').value = matchedPreset.category;
       }
+      // Autofill cancel fields
+      document.getElementById('sub-cancel-url').value = matchedPreset.cancelUrl || '';
+      document.getElementById('sub-cancel-memo').value = matchedPreset.cancelSteps ? matchedPreset.cancelSteps.join('\n') : '';
     } else {
       // Guess logo domain from service name
       const domainSafe = name.toLowerCase().replace(/[^a-z0-9]/g, '') + '.com';
       logoInput.value = `https://logo.clearbit.com/${domainSafe}`;
+      document.getElementById('sub-cancel-url').value = '';
+      document.getElementById('sub-cancel-memo').value = '';
     }
   }
 });
@@ -945,6 +1031,21 @@ document.getElementById('detail-pin-btn').addEventListener('click', () => {
     saveState();
     closeDetailModal();
     renderSubscriptionList();
+  }
+});
+
+document.getElementById('detail-cancel-status-btn').addEventListener('click', () => {
+  if (!selectedDetailId) return;
+  const sub = subscriptions.find(s => s.id === selectedDetailId);
+  if (sub) {
+    sub.isCancelling = !sub.isCancelling;
+    saveState();
+    closeDetailModal();
+    renderDashboard();
+    renderSubscriptionList();
+    if (activeView === 'calendar') renderCalendar();
+    if (activeView === 'analysis') renderAnalysis();
+    if (activeView === 'diagnostics') renderDiagnostics();
   }
 });
 
