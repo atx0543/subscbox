@@ -400,7 +400,7 @@ body {
 }
 
 .sub-card-pinned {
-  border-left: 4px solid var(--primary);
+  /* border-left: 4px solid var(--primary); (User requested removal) */
 }
 
 .sub-card-row {
